@@ -111,6 +111,33 @@ function deleteBook(book){
     updateDataToStorage();
 }
 
+function searchBook(){
+    const bookTitle = document.getElementById("searchBookTitle").value;
+    const listCompleted = document.getElementById(COMPLETE_BOOK_LIST_ID).querySelectorAll('article');
+    const listUncompleted = document.getElementById(INCOMPLETE_BOOK_LIST_ID).querySelectorAll('article');
+
+    let i = 0;
+    for(i = 0; i<listCompleted.length;i++){
+        const title = listCompleted[i].querySelector("h3").innerText;
+        if(title.includes(bookTitle)){
+            listCompleted[i].removeAttribute("hidden");
+        }
+        else{
+            listCompleted[i].setAttribute("hidden", "hidden");
+        }
+    }
+
+    for(i = 0; i<listUncompleted.length;i++){
+        const title = listUncompleted[i].querySelector("h3").innerText;
+        if(title.includes(bookTitle)){
+            listUncompleted[i].removeAttribute("hidden");
+        }
+        else{
+            listUncompleted[i].setAttribute("hidden", "hidden");
+        }
+    }
+}
+
 function createCompleteButton(){
     return createButton("green", "Selesai Dibaca", function(event){
         addBookToCompleted(event.target.parentElement.parentElement);

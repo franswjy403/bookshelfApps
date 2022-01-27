@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", function(){
         event.preventDefault();
         searchBook();
     });
+
+    if(isStorageExist()) loadDataFromStorage();
 })
 
 document.addEventListener("ondatasaved", () => {
@@ -19,4 +21,14 @@ document.addEventListener("ondatasaved", () => {
 
 document.addEventListener("ondataloaded", () => {
     refreshDataFromBooks();
+})
+
+const checkbox = document.getElementById("inputBookIsComplete");
+checkbox.addEventListener("change", function(){
+    if(this.checked){
+        document.getElementById("isRead").innerText = "Selesai dibaca";
+    }
+    else{
+        document.getElementById("isRead").innerText = "Belum selesai dibaca";
+    }
 })
