@@ -62,18 +62,18 @@ function makeBook(title, author, year, isCompleted){
 }
 
 function addBookToCompleted(book){
-    const bookTitle = book.querySelector("h3").innerText;
-    const bookData = book.querySelectorAll("p");
-    const bookAuthor = bookData[0].innerText;
-    const bookYear = bookData[1].innerText;
+    const bookObj = findBook(book[BOOK_ITEMID]);
+    bookObj.isComplete = true;
+    
+
+    const bookTitle = bookObj.title;
+    const bookAuthor = bookObj.author;
+    const bookYear = bookObj.year;
 
     const newBook = makeBook(bookTitle, bookAuthor, bookYear, true);
     const listCompleted = document.getElementById(COMPLETE_BOOK_LIST_ID);
-
-    const bookObj = findBook(book[BOOK_ITEMID]);
-    bookObj.isComplete = true;
     newBook[BOOK_ITEMID] = bookObj.id;
-
+    
     listCompleted.append(newBook);
 
     book.remove();
@@ -81,16 +81,16 @@ function addBookToCompleted(book){
 }
 
 function addBookToUncompleted(book){
-    const bookTitle = book.querySelector("h3").innerText;
-    const bookData = book.querySelectorAll("p");
-    const bookAuthor = bookData[0].innerText;
-    const bookYear = bookData[1].innerText;
+    const bookObj = findBook(book[BOOK_ITEMID]);
+    bookObj.isComplete = false;
+    
+
+    const bookTitle = bookObj.title;
+    const bookAuthor = bookObj.author;
+    const bookYear = bookObj.year;
 
     const newBook = makeBook(bookTitle, bookAuthor, bookYear, false);
     const listUncompleted = document.getElementById(INCOMPLETE_BOOK_LIST_ID);
-
-    const bookObj = findBook(book[BOOK_ITEMID]);
-    bookObj.isComplete = false;
     newBook[BOOK_ITEMID] = bookObj.id;
 
     listUncompleted.append(newBook);
