@@ -4,13 +4,17 @@ document.addEventListener("DOMContentLoaded", function(){
 
     submitForm.addEventListener("submit", function(event){
         event.preventDefault();
-        addBook();
+        if(isEditingBook()) saveEditBook();
+        else addBook();
     });
 
     searchForm.addEventListener("submit", function(event){
         event.preventDefault();
         searchBook();
     });
+
+    const editForm = document.getElementById("bookEditSubmit");
+    editForm.style.display = "none";
 
     if(isStorageExist()) loadDataFromStorage();
 })

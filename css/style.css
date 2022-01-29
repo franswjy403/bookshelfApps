@@ -170,3 +170,8 @@ main {
     background-color: darkred;
     color: white;
 }
+
+.book_shelf > .book_list > .book_item > .action > .yellow {
+    background-color: rgb(255, 166, 0);
+    color: white;
+}

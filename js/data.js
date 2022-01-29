@@ -1,4 +1,5 @@
 const STORAGE_KEY = "bookshelf_app";
+const EDIT_BOOK_KEY = "edit_book_id";
 
 let books = [];
 
@@ -8,6 +9,22 @@ function isStorageExist(){
         return false
     }
     return true;
+}
+
+function resetEditBookId(){
+    sessionStorage.removeItem(EDIT_BOOK_KEY);
+}
+
+function setEditBookId(bookId){
+    sessionStorage.setItem(EDIT_BOOK_KEY, bookId);
+}
+
+function getEditBookId(){
+    return sessionStorage.getItem(EDIT_BOOK_KEY);
+}
+
+function isEditingBook(){
+    return getEditBookId() != null;
 }
 
 function saveData() {
@@ -44,8 +61,11 @@ function composeBookObject(title, author, year, isComplete) {
 
 function findBook(bookId) {
     for(book of books){
-        if(book.id === bookId)
+        
+        if(book.id === bookId){
             return book;
+        }
+            
     }
     return null;
 }
